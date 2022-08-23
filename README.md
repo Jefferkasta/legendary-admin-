@@ -1,12 +1,17 @@
 # legendary-admin-
-Ropositorio Almacen ropa
+Repositorio Almacen ropa
 
 # Colaboradores
-Desarrollador:Breyner   
-Analista: Yeiner
+Desarrollador:  [Breyner Ocampo Cardenas](https://github.com/BROC95)
 
-Product Owner:Victo Diaz
 
-Admistrador de DB: Oscar Benjumea  
+Analista: [Yeiner](https://github.com/JeiRuizCast)
 
-Scrum Master: Jefferson Vega C
+
+Product Owner:
+[Victor Diaz](https://github.com/diazpajaro)
+
+Admistrador de DB: [Oscar Benjumea](https://github.com/obenjumea1985)  
+
+Scrum Master: 
+[Jefferson Vega C](https://github.com/Jefferkasta)
