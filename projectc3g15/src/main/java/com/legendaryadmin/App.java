@@ -1,6 +1,7 @@
 package com.legendaryadmin;
 
 import com.legendaryadmin.Empleado;
+import com.legendaryadmin.Empresa;
 /**
  * Hello world!
  *
@@ -16,6 +17,16 @@ public class App
         
 
         System.out.println(emple.getEmail());
+
+
+        System.out.println( "EMPRESA!" );
+       
+        Empresa empre = new Empresa("Tu ropa","Colombia","3059033024",12345);
+        
+
+        System.out.println(empre.getNombre());
+        System.out.println(empre.getDireccion());
+
 
 
     }
