@@ -1,2 +1,2 @@
 # legendary-admin-
-Ropositorio Almacen ropa
+Repositorio Almacen ropa
