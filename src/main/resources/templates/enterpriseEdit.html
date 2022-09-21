@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+
+<header th:replace="index :: header"></header>
+<body>
+
+  <!-- @Column(name = "name", unique = true)
+private String name;
+@Column(name = "document",unique = true)
+private String document;
+@Column(name = "phone")
+private String phone;
+@Column(name = "addres")
+private String addres;
+@Column(name = "createAt")
+private LocalDate createAt;
+@Column(name = "updateAt") -->
+
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 th:text="${msn}"></h1>
+      <h1 >Editar </h1>
+      <form class=" col-lg-9 mx-auto" th:action="@{/updateE}" th:method="patch" th:object="${idEmp}">
+       <div class="row d-flex flex-column align-items-center">
+        <div class="row mb-3">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input th:field="*{name}" class="form-control" type="text" placeholder="descripcion" required>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
+          <div class="col-sm-10">
+            <input th:field="*{phone}" class="form-control" type="text" placeholder="descripcion" required>
+          </div>
+          </div>
+          <div class="row mb-3">
+            <label  for="inputEmail3" class="col-sm-2 col-form-label ">address</label>
+            <div class="col-sm-10">
+              <input th:field="*{addres}" class="form-control" type="text" placeholder="descripcion" required>
+            </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">document</label>
+              <div class="col-sm-10">
+                <input th:field="*{document}" class="form-control" type="text" placeholder="descripcion" required>
+              </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-10">
+                  <input th:field="*{createAt}" class="form-control" type="date" placeholder="descripcion" required>
+                </div>
+       </div>
+       
+  
+  
+  
+  
+              </div>
+        
+              <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                      checked>
+                    <label class="form-check-label" for="gridRadios1">
+                      First radio
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                    <label class="form-check-label" for="gridRadios2">
+                      Second radio
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3"
+                      disabled>
+                    <label class="form-check-label" for="gridRadios3">
+                      Third disabled radio
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="row mb-3">
+                <div class="col-sm-10 offset-sm-2">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                    <label class="form-check-label" for="gridCheck1">
+                      Example checkbox
+                    </label>
+                  </div>
+                </div>
+              </div> -->
+              <button type="submit" class="btn btn-primary">Sign in</button>
+      </form> -->
+    </div>
+  
+
+
+
+
+
+
+  <div class="px-4 py-5 my-5 text-center ">
+    <a href="/" class="btn btn-primary btn-lg px-4 gap-3">Inicio</a>
+    <a href="/Enter" class="btn btn-primary btn-lg px-4 gap-3">Empresas view</a>
+  </div>
+
+  <!-- JavaScript Bundle with Popper -->
+
+<header th:replace="index :: footer"></header>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+</script>
+</html>
