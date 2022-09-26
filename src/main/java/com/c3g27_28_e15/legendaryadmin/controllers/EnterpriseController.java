@@ -31,6 +31,12 @@ public class EnterpriseController {
     public List<Enterprise> EnterpriseList() {
         return this.service.getEnterpriseList();
     }
+    @GetMapping("/enterprise/{id}")
+    public Enterprise getUser(@PathVariable("id")  Long id) {
+     return this.service.getEnterpriseById(id);
+    }
+
+
 
     // Post
     @PostMapping("/enterprise")
@@ -42,6 +48,8 @@ public class EnterpriseController {
     public RedirectView createNewEnter(@ModelAttribute @DateTimeFormat(pattern = "YYYY-MM-DD") Enterprise enterprise,
             Model model) {
         model.addAttribute(enterprise);
+        // System.out.println("+++Newn++");
+        // System.out.println(enterprise.toString());
         enterprise.setUpdatedAt(enterprise.getCreateAt());
         this.service.creatEnterprise(enterprise);
         return new RedirectView("/Enter");
@@ -56,6 +64,7 @@ public class EnterpriseController {
         this.service.SaveEdit(enterprise);
         return new RedirectView("/Enter");
     }
+
 
     // Delete
     @DeleteMapping("/Enter/{id}")

@@ -27,55 +27,57 @@ private String addres;
 private LocalDate createAt;
 @Column(name = "updateAt") -->
 
-    <div class="px-4 py-5 my-5 text-center">
-      <h1 th:text="${msn}"></h1>
-      <h1 >Editar </h1>
-      <form class=" col-lg-9 mx-auto" th:action="@{/updateE}" th:method="patch" th:object="${idEmp}">
-       <div class="row d-flex flex-column align-items-center">
-        <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <input th:field="*{name}" class="form-control" type="text" placeholder="descripcion" required>
-          </div>
+<div class="px-4 py-5 my-5 text-center">
+    <h1 th:text="${msn}"></h1>
+    <h1 >Editar </h1>
+    <form class=" col-lg-9 mx-auto" th:action="@{/newEn}" th:method="patch" th:object="${newEnter}">
+     <div class="row d-flex flex-column align-items-center">
+      <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input th:field="*{name}" class="form-control" type="text" placeholder="descripcion" required>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
+        <div class="col-sm-10">
+          <input th:field="*{phone}" class="form-control" type="text" placeholder="descripcion" required>
+        </div>
         </div>
         <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
+          <label  for="inputEmail3" class="col-sm-2 col-form-label ">address</label>
           <div class="col-sm-10">
-            <input th:field="*{phone}" class="form-control" type="text" placeholder="descripcion" required>
+            <input th:field="*{addres}" class="form-control" type="text" placeholder="descripcion" required>
           </div>
           </div>
           <div class="row mb-3">
-            <label  for="inputEmail3" class="col-sm-2 col-form-label ">address</label>
+            <label for="inputEmail3" class="col-sm-2 col-form-label">document</label>
             <div class="col-sm-10">
-              <input th:field="*{addres}" class="form-control" type="text" placeholder="descripcion" required>
+              <input th:field="*{document}" class="form-control" type="text" placeholder="descripcion" required>
             </div>
             </div>
             <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">document</label>
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
               <div class="col-sm-10">
-                <input th:field="*{document}" class="form-control" type="text" placeholder="descripcion" required>
-              </div>
+                <input th:field="*{createAt}" class="form-control" type="date" placeholder="descripcion" required>
               </div>
               <div class="row mb-3">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">aux</label>
                 <div class="col-sm-10">
-                  <input th:field="*{createAt}" class="form-control" type="date" placeholder="descripcion" required>
+                  <input th:field="*{aux}" class="form-control" type="date" placeholder="descripcion" required>
                 </div>
-       </div>
-       
-  
-  
-  
-  
-              </div>
+     </div>
      
-              <button type="submit" class="btn btn-primary">Sign in</button>
-      </form> 
-    </div>
-  
 
 
 
+
+            </div>
+      
+     
+            <button type="submit" class="btn btn-primary">Sign in</button>
+    </form> 
+  </div>
 
 
 

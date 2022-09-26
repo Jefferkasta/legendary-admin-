@@ -28,7 +28,7 @@ private LocalDate createAt;
 @Column(name = "updateAt") -->
 <div class="d-flex gap-4  justify-content-center my-5" > 
   
-    <div th:each="ent : ${Lenter}" class="card" style="width: 18rem;">
+    <div th:each="ent: ${Lenter} " class="card" style="width: 18rem;">
  
         
         <div class="card-body justify-content-center">
@@ -42,8 +42,12 @@ private LocalDate createAt;
           <li> <h5 class=" d-inline">Address:</h5>    <p th:text="${ent.addres}" class="d-inline card-text"> </p></li>
           <li> <h5 class=" d-inline">Create:</h5>    <p th:text="${ent.createAt}" class="d-inline card-text"> </p></li>
           
+            <li> <h5 class=" d-inline">N emp:</h5>    <p th:text="${ent.aux}" class="d-inline card-text"> </p></li>
+       
+        
+          
         </ol>
- 
+      </div>
 
           <div class=" row mt-2 ">
             <form th:action="@{/Enter/{id}(id=${ent.id})}" th:method="delete" >
@@ -52,8 +56,10 @@ private LocalDate createAt;
             <form th:action="@{/Enter/{id}(id=${ent.id})}" th:method="patch" >
                 <button type="submit" class="btn btn-link">Editar</button>
             </form>
-            
-            <a href="/EnterN" class="btn btn-info btn-lg px-4 gap-3">informacion</a>
+            <form th:action="@{/Employee/{id}(id=${ent.id})}" th:method="post" >
+              <button type="submit" class="btn btn-link">informacion</button>
+          </form>
+            <!-- <a href="/Employee" class="btn btn-info btn-lg px-4 gap-3">informacion</a> -->
           </div>
       
          

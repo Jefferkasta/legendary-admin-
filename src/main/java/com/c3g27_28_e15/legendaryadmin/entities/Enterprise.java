@@ -1,14 +1,19 @@
 package com.c3g27_28_e15.legendaryadmin.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "enterprise")
 public class Enterprise {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id_enterprise")
     public Long id;
 
     @Column(name = "name", unique = true)
@@ -23,9 +28,15 @@ public class Enterprise {
     private LocalDate createAt;
     @Column(name = "updateAt")
     private LocalDate updatedAt;
-
+    @Transient
     private Boolean editDone;
+    @Transient
     private Long aux;
+
+    @OneToMany(mappedBy = "enterprise",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = "enterprise")
+    // @Transient
+    private Set<Profile> employees;
 
     public Long getAux() {
         return aux;
@@ -45,18 +56,22 @@ public class Enterprise {
 
     public Enterprise() {
         this.editDone = false;
+          
+        // this.employees = null;
+        // this.aux = (long) 1;
 
     }
 
-    public Enterprise(String name, String document, String phone, String addres, LocalDate createAt) {
-        this.name = name;
-        this.document = document;
-        this.phone = phone;
-        this.addres = addres;
-        this.createAt = createAt;
-        this.updatedAt = createAt;
-        // this.editDone = false;
-    }
+    // public Enterprise(String name, String document, String phone, String addres, LocalDate createAt ,Employee employee) {
+    //     this.name = name;
+    //     this.document = document;
+    //     this.phone = phone;
+    //     this.addres = addres;
+    //     this.createAt = createAt;
+    //     this.updatedAt = createAt;
+    //     this.employees = employee;
+    //     // this.editDone = false;
+    // }
 
     public Long getId() {
         return id;
@@ -114,11 +129,23 @@ public class Enterprise {
         this.updatedAt = updatedAt;
     }
 
-    @Override
-    public String toString() {
-        return "Enterprise [addres=" + addres + ", aux=" + aux + ", createAt=" + createAt + ", document=" + document
-                + ", editDone=" + editDone + ", id=" + id + ", name=" + name + ", phone=" + phone + ", updatedAt="
-                + updatedAt + "]";
+
+    public Set<Profile> getEmployees() {
+        return employees;
     }
 
+    public void setEmployees(Set<Profile> employees) {
+        this.employees = employees;
+    }
+
+    // @Override
+    public String toString2() {
+        return "Enterprise [addres=" + addres + ", aux=" + aux + ", createAt=" + createAt + ", document=" + document
+                + ", editDone=" + editDone + ", employees=" + employees + ", id=" + getId() + ", name=" + name + ", phone="
+                + phone + ", updatedAt=" + updatedAt + "]";
+    }
+
+
+
+    
 }
