@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-
 import com.c3g27_28_e15.legendaryadmin.entities.Enterprise;
 import com.c3g27_28_e15.legendaryadmin.entities.Profile;
 import com.c3g27_28_e15.legendaryadmin.services.EnterpriseService;
@@ -30,7 +29,7 @@ public class FrontController {
         this.serviceEnter = serviceEnter;
         this.serviceProfile = serviceProfile;
     }
-    //Enterprise
+    // Enterprise
     // Get
 
     @GetMapping("/")
@@ -51,20 +50,21 @@ public class FrontController {
 
         List<Enterprise> enterpriseL = serviceEnter.getEnterpriseList();
         model.addAttribute("Lenter", enterpriseL);
-        
-        List<Integer> Nemp  = new ArrayList<>();
+
+        List<Integer> Nemp = new ArrayList<>();
         for (Enterprise enterprise : enterpriseL) {
-            
+
             Nemp.add(enterprise.getEmployees().size());
             Long n = (long) enterprise.getEmployees().size();
             enterprise.setAux(n);
-
+            // this.serviceEnter.SaveEdit(enterprise);
             
+
         }
         model.addAttribute("Nemp", Nemp);
         for (int i = 0; i < Nemp.size(); i++) {
             System.out.println(Nemp.get(i));
-        
+
         }
 
         return "listEnter";
@@ -88,11 +88,12 @@ public class FrontController {
     // @PostMapping("/FindId")
     // public String findIdEnterprise(Enterprise enterprise, Model model) {
 
-    //     // System.out.println(enterprise.getAux());
-    //     Enterprise enterpriseByID = this.serviceEnter.getEnterpriseById(enterprise.getAux());
+    // // System.out.println(enterprise.getAux());
+    // Enterprise enterpriseByID =
+    // this.serviceEnter.getEnterpriseById(enterprise.getAux());
 
-    //     model.addAttribute("Lenter", enterpriseByID);
-    //     return "listEnter";
+    // model.addAttribute("Lenter", enterpriseByID);
+    // return "listEnter";
 
     // }
 
@@ -104,14 +105,13 @@ public class FrontController {
         System.out.println(enterprise.toString());
         // enterprise.setUpdatedAt(enterprise.getCreateAt());
         // this.service.creatEnterprise(enterprise);
-               if (enterprise.getAux()!=null){
-                // System.out.print("No null  id");
-                // System.out.print(enterprise.getAux());
+        if (enterprise.getAux() != null) {
+            // System.out.print("No null id");
+            // System.out.print(enterprise.getAux());
             Enterprise enterpriseByID = this.serviceEnter.getEnterpriseById(enterprise.getAux());
             // System.out.println(enterpriseByID.toString());
             model.addAttribute("Lenter", enterpriseByID);
-        }
-        else{
+        } else {
             System.out.println(enterprise.getAux());
             System.out.println(enterprise.toString());
         }
@@ -128,69 +128,76 @@ public class FrontController {
         return "enterpriseEdit";
     }
 
+    // Profile
 
+    @PostMapping("/Employee/{id}/{Nem}")
+    public String Employee(Model model, @PathVariable("id") Long id,  @PathVariable("Nem") Long aux) {
+        Profile nProfile = new Profile();
 
-// Profile 
-
-
-@PostMapping("/Employee/{id}")
-public String Employee(Model model, @PathVariable("id") Long id) {
-    Profile nProfile = new Profile();
+        Enterprise info = serviceEnter.getEnterpriseById(id);
+        List<Profile> empleados = new ArrayList<>();
+        
+        System.out.println("Info= "+info.getAux());
+        System.out.println("Info= "+aux);
+        System.out.println("Info= "+info.getName());
+        if (aux != 0) {
+            List<Profile> Empleados = this.serviceProfile.getProfileList();
+            // List<Profile> empleados = new ArrayList<>();
     
-//    Enterprise info =serviceEnter.getEnterpriseById(id);
-
-//    if (info.getAux()!=0) {
-//     System.out.println(info.getAux());
-//    } else {
-//     System.out.println(info.getAux());
+            for (Profile emp : Empleados) {
+                // System.out.format("%12s %12 %12",
+                // emp.getName(),emp.getPhone(),emp.getEmail());
+                if (emp.getEnterprise().getId() == id) {
     
-//    }
-
-
-    List <Profile> Empleados=  this.serviceProfile.getProfileList();
-    List <Profile> empleados = new ArrayList<>();
-
-    for (Profile emp : Empleados) {
-        // System.out.format("%12s %12 %12", emp.getName(),emp.getPhone(),emp.getEmail());
-        if(emp.getEnterprise().getId()==id){
-            
-            String nameE =emp.getEnterprise().getName();
-            
-            model.addAttribute("nameE", nameE);
-            empleados.add(emp);
-            nProfile.setEnterprise(emp.getEnterprise());
-            // nProfile.getEnterprise().setId(id);
-
-            System.out.println(emp.getEnterprise().getId());
-            System.out.println(emp.getEnterprise().getDocument());
-            System.out.println(emp.getEnterprise().getName());
-            // System.out.println(nProfile.getEnterprise());
+                    String nameE = emp.getEnterprise().getName();
+    
+                    model.addAttribute("nameE", nameE);
+                    empleados.add(emp);
+                    nProfile.setEnterprise(emp.getEnterprise());
+                    // nProfile.getEnterprise().setId(id);
+    
+                    System.out.println(emp.getEnterprise().getId());
+                    System.out.println(emp.getEnterprise().getDocument());
+                    System.out.println(emp.getEnterprise().getName());
+                    // System.out.println(nProfile.getEnterprise());
+                    model.addAttribute("newEmp", nProfile);
+                }
+            }
+    
+            // model.addAttribute("newEmp", nProfile);
+            model.addAttribute("empleados", empleados);
+         
+        } else {
+            System.out.println(aux);
+            System.out.println("CERO");
+            nProfile.setEnterprise(info);
+            nProfile.getEnterprise().setId(id);
+     
             model.addAttribute("newEmp", nProfile);
+            model.addAttribute("empleados", empleados);
         }
+
+  
+        return "employeel";
     }
 
-    // model.addAttribute("newEmp", nProfile);
-    model.addAttribute("empleados", empleados);
-    return "employeel";
-}
+    // @PostMapping("/Employee")
+    // public String employeePost(Model model){
 
-// @PostMapping("/Employee")
-// public String employeePost(Model model){
-
-//     Profile emple = new Profile();
-//     model.addAttribute("emp",emple );
-//     return "employeel";
-// }
-@PostMapping("/newEmployee")
-public RedirectView createNewEnter(@ModelAttribute @DateTimeFormat(pattern = "YYYY-MM-DD") Profile profile,
-        Model model) {
-    // model.addAttribute(profile);
-    // System.out.println("+++Newn++");
-    // System.out.println(enterprise.toString());
-    // enterprise.setUpdatedAt(enterprise.getCreateAt());
-    // this.service.creatEnterprise(enterprise);
-    // this.serviceProfile.creatProfile(profile);
-    return new RedirectView("/Enter");
-}
+    // Profile emple = new Profile();
+    // model.addAttribute("emp",emple );
+    // return "employeel";
+    // }
+    @PostMapping("/newEmployee")
+    public RedirectView createNewEnter(@ModelAttribute @DateTimeFormat(pattern = "YYYY-MM-DD") Profile profile,
+            Model model) {
+        // model.addAttribute(profile);
+        // System.out.println("+++Newn++");
+        // System.out.println(enterprise.toString());
+        // enterprise.setUpdatedAt(enterprise.getCreateAt());
+        // this.service.creatEnterprise(enterprise);
+        // this.serviceProfile.creatProfile(profile);
+        return new RedirectView("/Enter");
+    }
 
 }

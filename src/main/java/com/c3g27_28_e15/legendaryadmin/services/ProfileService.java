@@ -32,7 +32,17 @@ public class ProfileService {
     public Profile saveProfile(Profile newProfile){
 
         // System.out.println(newProfile.get);
-        return this.repository.save(newProfile);
+        // Enterprise name = this.repository.findByName(newProfile.getEmail());
+        final Profile enterprise = this.repository.findByEmail(newProfile.getEmail());
+        if ( enterprise == null) {
+
+            return this.repository.save(newProfile);
+        } else {
+            System.out.println("Existe");
+            return newProfile;
+        }
+
+        // return this.repository.save(newProfile);
     }
     @Transactional(readOnly = true)
     public List<Profile> getProfileList(){

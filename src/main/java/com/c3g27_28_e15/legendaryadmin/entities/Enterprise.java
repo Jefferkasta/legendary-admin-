@@ -30,7 +30,7 @@ public class Enterprise {
     private LocalDate updatedAt;
     @Transient
     private Boolean editDone;
-    @Transient
+    @Column(name = "Nemp")
     private Long aux;
 
     @OneToMany(mappedBy = "enterprise",cascade = CascadeType.ALL)

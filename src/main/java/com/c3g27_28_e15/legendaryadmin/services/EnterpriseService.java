@@ -62,8 +62,8 @@ public class EnterpriseService {
     public Enterprise getEnterpriseById(Long id) {
   
             System.out.println("Servicio= "+id);
-        
-            return this.EnterRepository.findById(id).orElseThrow();
+          Enterprise info = new Enterprise();
+            return this.EnterRepository.findById(id).orElse(info);
           
       
         
