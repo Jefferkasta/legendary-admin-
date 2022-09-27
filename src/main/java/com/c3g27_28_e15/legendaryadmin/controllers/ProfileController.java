@@ -2,7 +2,7 @@ package com.c3g27_28_e15.legendaryadmin.controllers;
 
 // import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
@@ -77,6 +77,7 @@ public class ProfileController {
      
            return new RedirectView("/Enter");
        }
+       
 
     @DeleteMapping("/Empdelete/{id}")
     public RedirectView deleteProfile(@PathVariable("id") Long id) {

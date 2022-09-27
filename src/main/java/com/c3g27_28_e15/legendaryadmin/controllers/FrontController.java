@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,25 +18,36 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.c3g27_28_e15.legendaryadmin.entities.Enterprise;
 import com.c3g27_28_e15.legendaryadmin.entities.Profile;
+import com.c3g27_28_e15.legendaryadmin.entities.User;
 import com.c3g27_28_e15.legendaryadmin.services.EnterpriseService;
 import com.c3g27_28_e15.legendaryadmin.services.ProfileService;
+import com.c3g27_28_e15.legendaryadmin.services.UserService;
 
 @Controller
 public class FrontController {
 
     EnterpriseService serviceEnter;
     ProfileService serviceProfile;
+    UserService userService;
 
-    public FrontController(EnterpriseService serviceEnter, ProfileService serviceProfile) {
+    public FrontController(EnterpriseService serviceEnter, ProfileService serviceProfile,UserService userService) {
         this.serviceEnter = serviceEnter;
         this.serviceProfile = serviceProfile;
+        this.userService = userService;
     }
     // Enterprise
     // Get
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @AuthenticationPrincipal OidcUser principal) {
 
+        if(principal!=null){
+            // System.out.println(principal.getClaims());
+        User user = this.userService.getOrCreateUser(principal.getClaims());
+        model.addAttribute("user", user);
+    }
+        
+        
         String[] url = new String[] { "https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp",
                 "https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(12).webp",
                 "https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(10).webp" };
@@ -83,41 +96,33 @@ public class FrontController {
         return "enterprise";
     }
 
-    // Post
 
-    // @PostMapping("/FindId")
-    // public String findIdEnterprise(Enterprise enterprise, Model model) {
-
-    // // System.out.println(enterprise.getAux());
-    // Enterprise enterpriseByID =
-    // this.serviceEnter.getEnterpriseById(enterprise.getAux());
-
-    // model.addAttribute("Lenter", enterpriseByID);
-    // return "listEnter";
-
-    // }
 
     @PostMapping("/FindId")
     public String findIdEnterprise(@ModelAttribute @DateTimeFormat(pattern = "YYYY-MM-DD") Enterprise enterprise,
             Model model) {
         model.addAttribute(enterprise);
-        System.out.println("+++FindId+");
-        System.out.println(enterprise.toString());
-        // enterprise.setUpdatedAt(enterprise.getCreateAt());
-        // this.service.creatEnterprise(enterprise);
-        if (enterprise.getAux() != null) {
-            // System.out.print("No null id");
-            // System.out.print(enterprise.getAux());
-            Enterprise enterpriseByID = this.serviceEnter.getEnterpriseById(enterprise.getAux());
-            // System.out.println(enterpriseByID.toString());
-            model.addAttribute("Lenter", enterpriseByID);
-        } else {
-            System.out.println(enterprise.getAux());
-            System.out.println(enterprise.toString());
+    
+        if (enterprise.getAux2()!= null) {
+    
+            Enterprise enterpriseByID = this.serviceEnter.getEnterpriseById(enterprise.getAux2());
+            Integer num = enterpriseByID.getEmployees().size();
+            if ( num !=null)
+            {
+                Long n = (long) num;
+                System.out.println(n);
+                
+                    enterpriseByID.setAux(n);
+                    // System.out.println(enterpriseByID.toString());
+                    model.addAttribute("Lenter", enterpriseByID);
+
+            }
+
         }
-        // return new RedirectView("/Enter");
-        return "listEnter";
-    }
+
+
+    return "listEnter";
+}
 
     // Patch
     @PatchMapping("/Enter/{id}")

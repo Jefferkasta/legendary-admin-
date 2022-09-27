@@ -2,14 +2,12 @@ package com.c3g27_28_e15.legendaryadmin.services;
 
 import com.c3g27_28_e15.legendaryadmin.Repository.EnterpriseRepository;
 import com.c3g27_28_e15.legendaryadmin.Repository.ProfileRepository;
-import com.c3g27_28_e15.legendaryadmin.entities.Enterprise;
+
 import com.c3g27_28_e15.legendaryadmin.entities.Profile;
 
-import net.bytebuddy.implementation.bytecode.Throw;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

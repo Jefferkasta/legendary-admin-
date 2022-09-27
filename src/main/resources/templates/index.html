@@ -15,7 +15,7 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active bg-gradient text-bg-danger" aria-current="page" href="/Enter">Enterprise</a>
@@ -23,7 +23,7 @@
 
         </ul>
 
-      </div>
+      </div> -->
     </div>
   </nav>
 </header>
@@ -47,92 +47,71 @@
 
 
 
-
-
-
-<div class="mb-10 text-center">
- <h1>Admin Legend</h1>
-
-
- <div class=" px-4 py-5  btn-group gap-3">
-  <div class=" ">
-    <a href="/EnterN" class="btn btn-primary btn-lg px-4 gap-4 d-inline p-2">Crear Empresa</a>
-    <div class="px-5 py-5">
-      <a href="/Enter" class=" btn btn-primary btn-lg px-4 gap-4  text-center d-inline p-2">todas</a>
-    </div>
-  </div>
-
- 
-  </div>
- 
-
-</div>
-<!-- <div>
-  <form class=" col-lg-9 mx-auto" th:action="@{/FindId}" th:method="post" th:object="${dat}">
-    <div class="row d-flex flex-column align-items-center">
-     <div class="row mb-3">
-       <label for="inputEmail3" class="col-sm-2 col-form-label">id</label>
-       <div class="col-sm-10">
-         <input th:field="*{aux}" class="form-control" type="numeric" placeholder="id" required>
-       </div>
-     </div>
-     <button type="submit" class="btn btn-primary">Enviar</button>
-           </div>
-       
-   </form> 
-</div> -->
-
-
 <div class="px-4 py-5 my-5 text-center">
-  <h1 th:text="${msn}"></h1>
-  <form class=" col-lg-9 mx-auto" th:action="@{/FindId}" th:method="post" th:object="${dat}">
-   <div class="row d-flex flex-column align-items-center">
-    <!-- <div class="row mb-3">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
-      <div class="col-sm-10">
-        <input th:field="*{name}" class="form-control" type="text" placeholder="descripcion" required>
+  <!-- <img src="img/done.png" class="d-block mx-auto mb-4" height="100" alt="logo"> -->
+  <h1 class="display-5 fw-bold">Sistema de gestion de empresas</h1>
+  <div class="col-lg-6 mx-auto"> 
+      <p class="lead mb-4">Sistema de LegendaryAdmin</p>
+      <div sec:authorize="!isAuthenticated()">
+          <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-primary">Log In</a>
+          
       </div>
-    </div>
-    <div class="row mb-3">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
-      <div class="col-sm-10">
-        <input th:field="*{phone}" class="form-control" type="text" placeholder="descripcion" required>
-      </div>
-      </div>
-      <div class="row mb-3">
-        <label  for="inputEmail3" class="col-sm-2 col-form-label ">address</label>
-        <div class="col-sm-10">
-          <input th:field="*{addres}" class="form-control" type="text" placeholder="descripcion" required>
-        </div>
-        </div>
-        <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">document</label>
-          <div class="col-sm-10">
-            <input th:field="*{document}" class="form-control" type="text" placeholder="descripcion" required>
+      <div sec:authorize="isAuthenticated()">
+          <p>You are logged in!</p>
+          <p th:text="'Bienvenido, a LegendaryAdmin '+${user.getName()}"></p>
+          <!-- <img th:src="${user.Image}" alt="img">
+          <img src="https://lh3.googleusercontent.com/a-/ACNPEu_KkbM8AGpGDGqIwttfB9Aw6Qyv50slbnTPSC1m=s96-c" alt="imagen"> -->
+          <div class="mb-10 text-center">
+            <h1>Admin Legend</h1>
+            <div class=" px-4 py-5  btn-group gap-3">
+             <div class=" ">
+               <a href="/EnterN" class="btn btn-primary btn-lg px-4 gap-4 d-inline p-2">Crear Empresa</a>
+               <div class="px-5 py-5">
+                 <a href="/Enter" class=" btn btn-primary btn-lg px-4 gap-4  text-center d-inline p-2">todas</a>
+               </div>
+             </div>
+           
+            
+             </div>
+            
+           
+           </div>
+           <div class="px-4 py-5 my-5 text-center">
+            <h1 th:text="${msn}"></h1>
+            <form class=" col-lg-9 mx-auto" th:action="@{/FindId}" th:method="post" th:object="${dat}">
+             <div class="row d-flex flex-column align-items-center">
+             
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
+                        <div class="col-sm-10">
+                          <input th:field="*{aux2}" class="form-control" type="number" placeholder="id" required>
+                        </div>
+             </div>
+             
+          
+          
+          
+          
+                    </div>
+              
+            
+                    <button type="submit" class="btn btn-primary">Find by id</button>
+            </form> 
           </div>
+          
+       <a th:href="@{/logout}" class="btn btn-dark">Log Out</a>
+      
           </div>
-          <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
-            <div class="col-sm-10">
-              <input th:field="*{createAt}" class="form-control" type="date" placeholder="descripcion" required>
-            </div> -->
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Id</label>
-              <div class="col-sm-10">
-                <input th:field="*{aux}" class="form-control" type="number" placeholder="id" required>
-              </div>
-   </div>
-   
 
 
-
-
-          </div>
-    
-  
-          <button type="submit" class="btn btn-primary">Find by id</button>
-  </form> 
+  </div>
 </div>
+
+
+
+
+
+
 
 
 

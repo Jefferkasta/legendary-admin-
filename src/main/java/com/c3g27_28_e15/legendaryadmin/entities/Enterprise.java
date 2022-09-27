@@ -1,7 +1,7 @@
 package com.c3g27_28_e15.legendaryadmin.entities;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.Set;
 
 import javax.persistence.*;
@@ -32,6 +32,17 @@ public class Enterprise {
     private Boolean editDone;
     @Column(name = "Nemp")
     private Long aux;
+    // @Column(name = "Nemp")
+    @Transient
+    private Long aux2;
+
+    public Long getAux2() {
+        return aux2;
+    }
+
+    public void setAux2(Long aux2) {
+        this.aux2 = aux2;
+    }
 
     @OneToMany(mappedBy = "enterprise",cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = "enterprise")

@@ -1,12 +1,10 @@
 package com.c3g27_28_e15.legendaryadmin.services;
 
-import java.util.ArrayList;
+
 // import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
-// import javax.persistence.EntityNotFoundException;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.jdbc.InvalidResultSetAccessException;
@@ -19,7 +17,7 @@ import com.c3g27_28_e15.legendaryadmin.Repository.EnterpriseRepository;
 import com.c3g27_28_e15.legendaryadmin.Repository.ProfileRepository;
 // import com.c3g27_28_e15.legendaryadmin.entities.Employee;
 import com.c3g27_28_e15.legendaryadmin.entities.Enterprise;
-import com.c3g27_28_e15.legendaryadmin.entities.Profile;
+
 
 @Service
 
@@ -58,15 +56,16 @@ public class EnterpriseService {
         return this.EnterRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
-    public Enterprise getEnterpriseById(Long id) {
+    // @Transactional(readOnly = true)
+    @Transactional
+    public <X> Enterprise getEnterpriseById(Long id) {
   
-            System.out.println("Servicio= "+id);
-          Enterprise info = new Enterprise();
-            return this.EnterRepository.findById(id).orElse(info);
-          
-      
-        
+        System.out.println("Servicio= "+id);
+        Enterprise info = new Enterprise();
+        // return this.EnterRepository.findById(id).orElse(info);
+        // return this.EnterRepository.findById(id).orElse(info);
+        // return this.EnterRepository.findById(id).orElseThrow();
+        return this.EnterRepository.findById(id).orElse(info);
     }
 
     @Transactional()
@@ -91,7 +90,7 @@ public class EnterpriseService {
             // enterMod.get().setEmployee();
             // Set <Employee> n =  enterMod.get().getEmployees();
             // Set<Profile> myArrayListE = new HashSet<Profile>();
-            List<Profile> myArrayListE2 =  new ArrayList<>();
+            
                 System.out.println("****************************************");
             // for (Employee i : n){
 
