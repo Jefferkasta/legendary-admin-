@@ -89,7 +89,7 @@ public class FrontController {
         Enterprise newEmp = new Enterprise();
 
         model.addAttribute("newEnter", newEmp);
-        var mensaje = "Empresa nueva";
+        String mensaje = "Empresa nueva";
         Boolean editState = newEmp.getEditDone();
         model.addAttribute("Edit", editState);
         model.addAttribute("msn", mensaje);
