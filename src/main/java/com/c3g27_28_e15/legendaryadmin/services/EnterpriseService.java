@@ -62,6 +62,7 @@ public class EnterpriseService {
   
         System.out.println("Servicio= "+id);
         Enterprise info = new Enterprise();
+        info.setEditDone(true);
         // return this.EnterRepository.findById(id).orElse(info);
         // return this.EnterRepository.findById(id).orElse(info);
         // return this.EnterRepository.findById(id).orElseThrow();

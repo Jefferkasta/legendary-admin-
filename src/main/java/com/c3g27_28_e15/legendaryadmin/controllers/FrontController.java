@@ -106,6 +106,9 @@ public class FrontController {
         if (enterprise.getAux2()!= null) {
     
             Enterprise enterpriseByID = this.serviceEnter.getEnterpriseById(enterprise.getAux2());
+
+            if (enterpriseByID.getEditDone()==false)
+            {
             Integer num = enterpriseByID.getEmployees().size();
             if ( num !=null)
             {
@@ -117,7 +120,7 @@ public class FrontController {
                     model.addAttribute("Lenter", enterpriseByID);
 
             }
-
+        }
         }
 
 
