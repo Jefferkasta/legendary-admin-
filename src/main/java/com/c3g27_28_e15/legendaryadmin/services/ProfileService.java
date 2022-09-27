@@ -78,9 +78,9 @@ public class ProfileService {
     public List<Profile> getProfileId(Long id){
         // this.repository.findById(id);
         // this.repositoryEnter.findById(id);
-        System.out.println("GetID");
-        System.out.println(id);
-        System.out.println(this.repositoryEnter.findById(id).orElseThrow());
+        // System.out.println("GetID");
+        // System.out.println(id);
+        // System.out.println(this.repositoryEnter.findById(id).orElseThrow());
         return this.repository.findAll();
     }
 
